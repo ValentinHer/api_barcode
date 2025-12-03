@@ -8,9 +8,9 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.get('/', (_req, res) => {
+/*app.get('/', (_req, res) => {
   res.json({ status: 'ok', message: 'API de productos' });
-});
+});*/
 
 app.use('/api/products', productRoutes);
 
@@ -21,6 +21,6 @@ connectDB()
     });
   })
   .catch((err) => {
-    console.error('Error al conectar a la base de datos', err);
+    console.error('Error to connect BD', err);
     process.exit(1);
   });

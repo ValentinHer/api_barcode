@@ -19,7 +19,7 @@ router.get('/', async (_req, res) => {
   res.json(products);
 });
 
-router.get('/barcode/:code', async (req, res) => {
+router.get('/:code', async (req, res) => {
   const { code } = req.params;
   const product = await Product.findOne({ barcode: code });
   if (!product) {
@@ -28,7 +28,7 @@ router.get('/barcode/:code', async (req, res) => {
   res.json(product);
 });
 
-router.get('/:id', async (req, res) => {
+/*router.get('/:id', async (req, res) => {
   const { id } = req.params;
   if (!mongoose.isValidObjectId(id)) {
     return res.status(400).json({ message: 'ID inválido' });
@@ -38,7 +38,7 @@ router.get('/:id', async (req, res) => {
     return res.status(404).json({ message: 'Producto no encontrado' });
   }
   res.json(product);
-});
+});*/
 
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
