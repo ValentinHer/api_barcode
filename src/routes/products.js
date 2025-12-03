@@ -6,8 +6,10 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
+    console.log('Body de la petición',req.body);
     const product = new Product(req.body);
     const saved = await product.save();
+    console.log('Producto guardado', saved);
     res.status(201).json(saved);
   } catch (err) {
     handleError(err, res);
@@ -21,10 +23,12 @@ router.get('/', async (_req, res) => {
 
 router.get('/:code', async (req, res) => {
   const { code } = req.params;
+  console.log('Código de barras recibido', code);
   const product = await Product.findOne({ barcode: code });
   if (!product) {
     return res.status(404).json({ message: 'Producto no encontrado' });
   }
+  console.log('Producto encontrado', product);
   res.json(product);
 });
 
